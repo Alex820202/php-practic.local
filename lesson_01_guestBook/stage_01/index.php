@@ -9,7 +9,7 @@ try {
 	
 	$query_select = 'SELECT * FROM posts ';
 	$sth_select = $dbh->prepare($query_select);
-	//if (headers_sent()){$flag = TRUE;}
+	
 
 	if (!empty($_POST['author']) && !empty($_POST['text'])){
 		$data['author_name'] = trim($_POST['author']);
@@ -17,15 +17,15 @@ try {
 		$data['text_post'] = htmlspecialchars(trim($_POST['text']));
 		$sth_insert->execute($data);
 		header( 'Location: index.php', true, 303 );
-		//if (headers_sent()){$flag = TRUE;}
+		
 	}else{
 		$sth_select -> execute();
-		//$sth_select->setFetchMode(PDO::FETCH_ASSOC);
+		
 		$results = $sth_select->fetchAll(PDO::FETCH_ASSOC);
-		//$flag = FALSE;
+		
 	}
 
-// var_dump($_SERVER['HTTP_REFERER']);
+
 
 
 
@@ -87,6 +87,7 @@ try {
 
 <?php }
 catch(PDOException $e) {
-echo $e->getMessage();
+	echo 'Хьюстон - у нас проблема!!!'.'<br>';
+	echo $e->getMessage();
 }
 
