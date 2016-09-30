@@ -1,0 +1,26 @@
+#wrapper{
+	
+	width: 650px;
+	margin: 0px auto;
+	padding: 10px;
+	
+	text-align: justify;
+}
+#wrapper > div, form > div{
+	margin-bottom: 15px;
+}
+div.note{
+	padding: 0px 20px;
+}
+#wrapper p{
+	margin-bottom: 5px;
+}
+#wrapper h1{
+	text-align: left;
+	font-size: 18pt;
+}
+
+.answer{
+	font-weight: bold;
+	
+}

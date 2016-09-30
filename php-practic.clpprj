@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="C:\Server\OpenServer\domains\php-practic.local\php-practic.clpprj">
+	<settings><PM_URL><![CDATA[http://php-practic.local/]]></PM_URL><PM_HOME_URL><![CDATA[http://php-practic.local/]]></PM_HOME_URL><PM_LIBS><![CDATA[]]></PM_LIBS><PM_FTP_CONNECTION><![CDATA[]]></PM_FTP_CONNECTION><PM_FTP_DIR><![CDATA[]]></PM_FTP_DIR><PM_FTP_UPLOAD_ON_SAVE><![CDATA[INT:0]]></PM_FTP_UPLOAD_ON_SAVE></settings><removed value=";"/><added value=""/><lastopfiles>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_01_guestBook\stage_01\Codelobster1.php"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_01_guestBook\stage_01\bootstrap3\css\bootstrap.css"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_01_guestBook\stage_01\css\styles.css"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_01_guestBook\stage_01\index.php"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_01_guestBook\stage_01\config.php"/>
+	</lastopfiles>
+	<errors version="5.3">
+		<errfile name="C:\Server\OpenServer\domains\php-practic.local\lesson_01_guestBook\stage_01\bootstrap3\css\bootstrap.css">
+			<error val="6;10;33;10;2502;1;"/>
+			<error val="2;9;33;9;2502;1;"/>
+			<error val="0;89;14;89;2501;1;"/>
+			<error val="2;282;37;282;2502;1;"/>
+			<error val="2;281;38;281;2502;1;"/>
+			<error val="2;1085;48;1085;2502;1;"/>
+			<error val="4;2445;49;2445;2502;1;"/>
+			<error val="2;2788;23;2788;2502;1;"/>
+			<error val="5;3002;28;3002;2502;1;"/>
+			<error val="2;2998;33;2998;2502;1;"/>
+			<error val="6;3003;28;3003;2502;1;"/>
+			<error val="6;2999;33;2999;2502;1;"/>
+			<error val="10;3004;28;3004;2502;1;"/>
+			<error val="2;3035;23;3035;2502;1;"/>
+			<error val="2;3720;23;3720;2502;1;"/>
+			<error val="2;4088;36;4088;2502;1;"/>
+			<error val="2;5006;6;5006;2502;1;"/>
+			<error val="7;5056;61;5056;2502;1;"/>
+			<error val="2;5730;36;5730;2502;1;"/>
+		</errfile>
+		<errfile name="C:\Server\OpenServer\domains\php-practic.local\lesson_01_guestBook\stage_01\Codelobster1.php">
+			<error val="68;20;69;20;901;2;"/>
+		</errfile>
+	</errors>
+	<cakedata>
+	</cakedata>
+	<dplmenupath>
+	</dplmenupath><laravael>
+	</laravael><smartyassings>
+	</smartyassings><twigtemplate>
+	</twigtemplate><yiidata>
+	</yiidata>
+	<todoblock>
+	</todoblock>
+	<filescache>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_07_admin_page\stage_01\css\styles.css" crc="1430279561"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_07_admin_page\stage_01\css\admin.css" crc="1430295623"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_07_admin_page\stage_01\bootstrap3\js\npm.js" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_07_admin_page\stage_01\bootstrap3\js\bootstrap.min.js" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_07_admin_page\stage_01\bootstrap3\js\bootstrap.js" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_07_admin_page\stage_01\bootstrap3\css\bootstrap.min.css" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_07_admin_page\stage_01\bootstrap3\css\bootstrap.css" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_07_admin_page\stage_01\bootstrap3\css\bootstrap-theme.min.css" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_07_admin_page\stage_01\bootstrap3\css\bootstrap-theme.css" crc="1426470128"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_07_admin_page\stage_01\admin\new.php" crc="1430295753"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_07_admin_page\stage_01\admin\index.php" crc="1430295893"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_07_admin_page\stage_01\admin\edit.php" crc="1430295787"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_07_admin_page\stage_01\Задание.html" crc="1430294443"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_07_admin_page\stage_01\index.php" crc="1430295463"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_06_simple_slider\stage_01\bootstrap3\js\npm.js" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_06_simple_slider\stage_01\bootstrap3\js\bootstrap.min.js" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_06_simple_slider\stage_01\bootstrap3\js\bootstrap.js" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_06_simple_slider\stage_01\bootstrap3\css\bootstrap.min.css" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_06_simple_slider\stage_01\bootstrap3\css\bootstrap.css" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_06_simple_slider\stage_01\bootstrap3\css\bootstrap-theme.min.css" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_06_simple_slider\stage_01\bootstrap3\css\bootstrap-theme.css" crc="1426470128"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_06_simple_slider\stage_01\Задание.html" crc="1430294443"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_06_simple_slider\stage_01\styles.css" crc="1430279561"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_06_simple_slider\stage_01\index.php" crc="1430294351"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_05_interview_test\02_interview\css\styles.css" crc="1430445016"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_05_interview_test\02_interview\bootstrap3\js\npm.js" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_05_interview_test\02_interview\bootstrap3\js\bootstrap.min.js" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_05_interview_test\02_interview\bootstrap3\js\bootstrap.js" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_05_interview_test\02_interview\bootstrap3\css\bootstrap.min.css" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_05_interview_test\02_interview\bootstrap3\css\bootstrap.css" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_05_interview_test\02_interview\bootstrap3\css\bootstrap-theme.min.css" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_05_interview_test\02_interview\bootstrap3\css\bootstrap-theme.css" crc="1426470128"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_05_interview_test\02_interview\index.php" crc="1430445045"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_05_interview_test\02_interview\check.php" crc="1430444972"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_05_interview_test\01_test\css\styles.css" crc="1430394011"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_05_interview_test\01_test\bootstrap3\js\npm.js" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_05_interview_test\01_test\bootstrap3\js\bootstrap.min.js" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_05_interview_test\01_test\bootstrap3\js\bootstrap.js" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_05_interview_test\01_test\bootstrap3\css\bootstrap.min.css" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_05_interview_test\01_test\bootstrap3\css\bootstrap.css" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_05_interview_test\01_test\bootstrap3\css\bootstrap-theme.min.css" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_05_interview_test\01_test\bootstrap3\css\bootstrap-theme.css" crc="1426470128"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_05_interview_test\01_test\index.php" crc="1430394051"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_05_interview_test\01_test\check.php" crc="1430393916"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_04_forum\css\styles.css" crc="1430387428"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_04_forum\bootstrap3\js\npm.js" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_04_forum\bootstrap3\js\bootstrap.min.js" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_04_forum\bootstrap3\js\bootstrap.js" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_04_forum\bootstrap3\css\bootstrap.min.css" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_04_forum\bootstrap3\css\bootstrap.css" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_04_forum\bootstrap3\css\bootstrap-theme.min.css" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_04_forum\bootstrap3\css\bootstrap-theme.css" crc="1426470128"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_04_forum\topic.php" crc="1430389495"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_04_forum\index.php" crc="1430388640"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_03_organizer\stage_01\css\styles.css" crc="1430300960"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_03_organizer\stage_01\bootstrap3\js\npm.js" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_03_organizer\stage_01\bootstrap3\js\bootstrap.min.js" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_03_organizer\stage_01\bootstrap3\js\bootstrap.js" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_03_organizer\stage_01\bootstrap3\css\bootstrap.min.css" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_03_organizer\stage_01\bootstrap3\css\bootstrap.css" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_03_organizer\stage_01\bootstrap3\css\bootstrap-theme.min.css" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_03_organizer\stage_01\bootstrap3\css\bootstrap-theme.css" crc="1426470128"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_03_organizer\stage_01\index.php" crc="1437622574"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_02_notebook\stage_02\bootstrap3\js\npm.js" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_02_notebook\stage_02\bootstrap3\js\bootstrap.min.js" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_02_notebook\stage_02\bootstrap3\js\bootstrap.js" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_02_notebook\stage_02\bootstrap3\css\bootstrap.min.css" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_02_notebook\stage_02\bootstrap3\css\bootstrap.css" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_02_notebook\stage_02\bootstrap3\css\bootstrap-theme.min.css" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_02_notebook\stage_02\bootstrap3\css\bootstrap-theme.css" crc="1426470128"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_02_notebook\stage_02\styles.css" crc="1430281094"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_02_notebook\stage_02\note.php" crc="1430281082"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_02_notebook\stage_02\index.php" crc="1430281403"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_02_notebook\stage_02\edit.php" crc="1430280974"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_02_notebook\stage_02\add.php" crc="1430280988"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_02_notebook\stage_01\bootstrap3\js\npm.js" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_02_notebook\stage_01\bootstrap3\js\bootstrap.min.js" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_02_notebook\stage_01\bootstrap3\js\bootstrap.js" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_02_notebook\stage_01\bootstrap3\css\bootstrap.min.css" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_02_notebook\stage_01\bootstrap3\css\bootstrap.css" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_02_notebook\stage_01\bootstrap3\css\bootstrap-theme.min.css" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_02_notebook\stage_01\bootstrap3\css\bootstrap-theme.css" crc="1426470128"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_02_notebook\stage_01\styles.css" crc="1430279561"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_02_notebook\stage_01\note.php" crc="1430279205"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_02_notebook\stage_01\index.php" crc="1430279160"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_02_notebook\stage_01\add.php" crc="1430280561"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_01_guestBook\stage_02\css\styles.css" crc="1430298797"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_01_guestBook\stage_02\bootstrap3\js\npm.js" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_01_guestBook\stage_02\bootstrap3\js\bootstrap.min.js" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_01_guestBook\stage_02\bootstrap3\js\bootstrap.js" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_01_guestBook\stage_02\bootstrap3\css\bootstrap.min.css" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_01_guestBook\stage_02\bootstrap3\css\bootstrap.css" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_01_guestBook\stage_02\bootstrap3\css\bootstrap-theme.min.css" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_01_guestBook\stage_02\bootstrap3\css\bootstrap-theme.css" crc="1426470128"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_01_guestBook\stage_02\index.php" crc="1430299016"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_01_guestBook\stage_01\css\styles.css" crc="1430298797"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_01_guestBook\stage_01\bootstrap3\js\npm.js" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_01_guestBook\stage_01\bootstrap3\js\bootstrap.min.js" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_01_guestBook\stage_01\bootstrap3\js\bootstrap.js" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_01_guestBook\stage_01\bootstrap3\css\bootstrap.min.css" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_01_guestBook\stage_01\bootstrap3\css\bootstrap.css" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_01_guestBook\stage_01\bootstrap3\css\bootstrap-theme.min.css" crc="1426470130"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_01_guestBook\stage_01\bootstrap3\css\bootstrap-theme.css" crc="1426470128"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_01_guestBook\stage_01\index.php" crc="1475146986"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_01_guestBook\stage_01\config.php" crc="1475131970"/>
+		<file name="C:\Server\OpenServer\domains\php-practic.local\lesson_01_guestBook\stage_01\Codelobster1.php" crc="1475138894"/>
+	</filescache>
+</project>

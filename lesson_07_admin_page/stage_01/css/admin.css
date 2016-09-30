@@ -1,0 +1,24 @@
+#wrapper{
+	
+	width: 700px;
+	
+}
+#wrapper td, #wrapper th{
+	text-align: center;
+}
+
+.nav{
+	text-align: right;
+	padding-right: 10px;
+	font-size: 10pt;
+}
+
+textarea.form-control{
+	width: 100%;
+	padding: 5px;
+	min-height: 400px;
+	resize: vertical;
+	text-align: justify;
+	font-size: 10pt;
+	
+}
