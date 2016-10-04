@@ -13,6 +13,7 @@ try{
 	*Блок запросов, которые нам нужны в работе.
 	*/
 	$query_total= 'SELECT COUNT(*) FROM posts';
+	$query_flag = 'SELECT MAX(datetime) FROM posts';
 	$query_select = 'SELECT * FROM posts LIMIT :start, :number';
 	$query_insert = 'INSERT INTO posts(author, datetime, text) VALUES (:author_name, :datetime, :text_post)';
 	/*
@@ -89,8 +90,14 @@ try{
 		
 		$sth_select->execute();
 		$results = $sth_select->fetchAll();
+		/*
+		*Запрашиваем в базе данных время последней добавленной записи
+		*/
+		$sth_flag = $dbh->prepare($query_flag);
+		$sth_flag->execute();
+		$result_flag = $sth_flag->fetch();
 	}
-	echo $current_page;
+
 	?>
 
 
@@ -203,12 +210,10 @@ try{
 			
 <!-----------------------Закончили вывод пагинации---------------------------------------------->
 
-<!------------В случае добавления записи выводим уведомление "Запись успешно сохранена!"---------------->
+<!------------В случае, если последняя запись была добавлена не позднее 30 секунд от вывода страницы клиенту, то выводим уведомление "Запись успешно сохранена!" - минус нет привязки сообщения к определенному пользователю через куки.---------------->
 			
 			<?php
-			$flag = "http://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
-			
-			if($_SERVER['HTTP_REFERER']== $flag){?> <div class="info alert alert-info">
+			if(time()-$result_flag['MAX(datetime)'] < 30){?> <div class="info alert alert-info">
 				Запись успешно сохранена!
 			</div>
 
