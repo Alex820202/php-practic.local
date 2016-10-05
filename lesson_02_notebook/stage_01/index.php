@@ -1,4 +1,16 @@
-<!DOCTYPE html>
+<?php
+
+require_once(__DIR__.'/config.php');
+try{
+	$dbh = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
+	$dbh->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+	$dbh->setAttribute( PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+	$query_select = 'SELECT id, title, anons, datetime FROM posts ORDER BY id DESC';
+	$sth_select = $dbh->prepare($query_select);
+	$sth_select->execute();
+	$results = $sth_select->fetchAll();
+	
+	?>
 <html lang="ru">
 	<head>
 		<meta charset="utf-8">  
@@ -9,40 +21,38 @@
 	<body>
 		<div id="wrapper">
 			<h1>Список записей</h1>
-			<div class="note">
+			<?php
+			foreach($results as $result){
+				?>
+				<div class="note">
 				<p>
-					<span class="date">15.04.2014</span>
-					<a href="note.php?id=3">Моя заметка номер 5</a>
+					<span class="date"><?php echo date('H:i:s d.m.Y', $result['datetime']);?></span>
+					<a href="note.php?id=<?php echo $result['id']; ?>"><?php echo $result['title']; ?></a>
 				</p>
 				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla efficitur elementum lorem id venenatis. Nullam id sagittis urna, eu ultrices risus. Duis ante lorem, semper nec fringilla eu, commodo vel mauris. Nunc tristique odio lectus, eget condimentum nunc consectetur eu. Nullam non varius nisl, aliquet fringilla lectus. Aliquam erat volutpat. Ut vel mi et lectus hendrerit ornare vel ut neque. Quisque venenatis nisl eu mi...
+				<?php echo $result['anons'];?> 
 				</p>
 			</div>	
-			<div class="note">
-				<p>
-					<span class="date">13.04.2014</span>
-					<a href="note.php?id=2">Запись о предстоящих делах</a>
-				</p>
-				<p>
-					Ut varius commodo fringilla. Nullam id pulvinar odio. Pellentesque gravida aliquam ipsum, et malesuada neque molestie eget. Vestibulum sagittis finibus efficitur. Donec sit amet aliquet dolor, vitae ornare tortor. Etiam eget augue nec diam vehicula bibendum. Nulla quis erat lacus. Vestibulum quis mattis augue...
-				</p>
-			</div>
-			<div class="note">
-				<p>
-					<span class="date">12.04.2014</span>
-					<a href="note.php?id=1">Список моих дел на завтра</a>
-				</p>
-				<p>
-					Etiam nisl ipsum, accumsan nec lacinia quis, gravida et neque. Morbi enim sem, sagittis id varius mattis, consectetur a ligula. Suspendisse molestie vulputate erat eu dapibus. Integer mattis elit in ipsum facilisis maximus. Vivamus eu urna velit. Integer sed lorem est. Nunc malesuada erat sit amet leo mattis, vitae egestas lacus sagittis...
-				</p>
-			</div>
-			<div>
-				<a href="add.php" class="btn btn-danger btn-block">Добавить запись</a>
+			<?php }?>
+			<a href="add.php" class="btn btn-danger btn-block">Добавить запись</a>
 			</div>
 		</div>
 
 	</body>
 </html>
+			
+				
+	
+<?php	
+} catch (PDOException $e) {
+	echo 'Хьюстон, у нас проблемы!!!<br>';
+	echo $e->getMessage();
+}
+
+
+
+?>
+
 
 
 			
