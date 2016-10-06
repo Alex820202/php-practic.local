@@ -1,18 +1,26 @@
 <?php
 require_once(__DIR__.'/config.php');
+$replacement = array('0'=>"\r\n", '1'=>"\n\n");
 try{
 	$dbh = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
 	$dbh->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 	$dbh->setAttribute( PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 	$query_insert = 'INSERT INTO posts(title, anons, text, datetime) VALUES (:title, :anons, :text, :datetime)';
 	if(!empty($_POST['title'])&& !empty($_POST['text'])){
-		$text_article = nl2br(trim($_POST['text']));
-		
-		$date['title'] = htmlspecialchars(trim($_POST['title']));
-		$date['anons'] = htmlspecialchars(mb_split('<br />', $text_article)[0]);
+		/**
+		* Форматируем текст для записи в базу данных
+		*/
+		$text_article = '<p>'.str_replace($replacement, '</p><p>',trim($_POST['text'])).'</p>';
+		/*
+		* Формируем заголовок, анонс и тело статьи.
+		*/
+		$date['title'] = strip_tags(trim($_POST['title']));
+		$date['anons'] = htmlspecialchars(mb_split('</p>', $text_article)[0].'</p>');
 		$date['text'] = htmlspecialchars($text_article);
 		$date['datetime'] = time();
-
+		/*
+		* Сформированную статью записываем в базу данных
+		*/
 		$sth_insert = $dbh->prepare($query_insert);
 		$sth_insert->execute($date);
 		header('Location: index.php', TRUE, 303);
@@ -43,13 +51,7 @@ try{
 	<body>
 		<div id="wrapper">
 			<h1>Новая запись</h1>
-			<!-- 
-			
-				После сохранения перебрасывает 
-				на список записей
-				с помощью header location
-			
-			-->
+
 			<div>
 				<form action="add.php" method="POST">
 					<p><input class="form-control" name="title" placeholder="Название записи"></p>

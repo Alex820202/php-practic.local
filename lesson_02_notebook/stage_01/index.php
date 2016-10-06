@@ -30,7 +30,7 @@ try{
 					<a href="note.php?id=<?php echo $result['id']; ?>"><?php echo $result['title']; ?></a>
 				</p>
 				<p>
-				<?php echo $result['anons'];?> 
+				<?php echo htmlspecialchars_decode($result['anons']);?> 
 				</p>
 			</div>	
 			<?php }?>
