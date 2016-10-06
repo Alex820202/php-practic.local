@@ -13,7 +13,6 @@ try{
 	*Блок запросов, которые нам нужны в работе.
 	*/
 	$query_total= 'SELECT COUNT(*) FROM posts';
-	$query_flag = 'SELECT MAX(datetime) FROM posts';
 	$query_select = 'SELECT * FROM posts LIMIT :start, :number';
 	$query_insert = 'INSERT INTO posts(author, datetime, text) VALUES (:author_name, :datetime, :text_post)';
 	/*
@@ -82,7 +81,7 @@ try{
 		$data_insert['text_post'] = htmlspecialchars(trim($_POST['text']));
 		$sth_insert = $dbh->prepare($query_insert);
 		$sth_insert->execute($data_insert);
-		header('Location: index.php?page='.$total_page, true, 303);
+		header('Location: index.php?page='.$total_page.'&flag=1', true, 303);
 	}else{
 		$sth_select = $dbh->prepare($query_select);
 		$sth_select->bindValue(start, $start, PDO::PARAM_INT);
@@ -90,12 +89,7 @@ try{
 		
 		$sth_select->execute();
 		$results = $sth_select->fetchAll();
-		/*
-		*Запрашиваем в базе данных время последней добавленной записи
-		*/
-		$sth_flag = $dbh->prepare($query_flag);
-		$sth_flag->execute();
-		$result_flag = $sth_flag->fetch();
+		
 	}
 
 	?>
@@ -210,10 +204,10 @@ try{
 			
 <!-----------------------Закончили вывод пагинации---------------------------------------------->
 
-<!------------В случае, если последняя запись была добавлена не позднее 30 секунд от вывода страницы клиенту, то выводим уведомление "Запись успешно сохранена!" - минус нет привязки сообщения к определенному пользователю через куки.---------------->
+<!------------В случае добавления записи выводим уведомление "Запись успешно сохранена!". Факт передачи осуществляем GET параметром.---------------->
 			
 			<?php
-			if(time()-$result_flag['MAX(datetime)'] < 30){?> <div class="info alert alert-info">
+			if($_GET['flag'] == 1){?> <div class="info alert alert-info">
 				Запись успешно сохранена!
 			</div>
 
