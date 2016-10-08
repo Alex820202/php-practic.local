@@ -1,3 +1,57 @@
+<?php
+require_once(__DIR__.'/config.php');
+try{
+	$dbh = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
+$dbh -> setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+$dbh -> setAttribute( PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+
+if(!empty($_GET['edit']) && empty($_GET['flag']) && empty($_POST)){
+	$sql_select = 'SELECT title, text, datetime FROM posts WHERE id='.(int)$_GET['edit'];
+	$stm_select = $dbh -> prepare($sql_select);
+	$stm_select -> execute();
+	$result = $stm_select -> fetch();
+	?>
+	<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8">  
+		<title>Редактировать запись</title>
+		<link rel="stylesheet" href="bootstrap3/css/bootstrap.css">
+		<link rel="stylesheet" href="styles.css">
+	</head>
+	<body>
+		<div id="wrapper">
+			<h1>Редактировать запись</h1>
+			<p class="nav">
+				<a href="index.php">на главную</a>
+			</p>
+			<div>
+				<form action="edit.php" method="POST">
+					<p><input class="form-control" name="datetime" value="<?php echo $result['datetime']?>"></p>
+					<p><input class="form-control" value="<?php echo $result['title']?>"></p>
+					<p>
+					<textarea class="form-control">
+					<?php echo $result['text'];?>
+					</textarea>
+					</p>
+					<p><input type="submit" class="btn btn-danger btn-block" value="Сохранить"></p>
+				</form>
+			</div>
+			
+		</div>
+
+	</body>
+</html>
+
+	
+	
+}
+} catch (PDOException $e) {
+	echo $e -> getMessage();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="ru">
 	<head>
