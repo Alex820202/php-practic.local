@@ -6,7 +6,7 @@ try{
 	$dbh_select->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	$dbh_select->setAttribute( PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 	$sql_select = 'SELECT title, text, datetime FROM posts WHERE id=:id';
-	$sth_select = $dbh_select ->prepare($sql_select);
+	$sth_select = $dbh_select -> prepare($sql_select);
 	$id = (int)$_GET['id'];
 	$sth_select -> execute(array('id' => $id));
 	$result = $sth_select ->fetch();
@@ -24,9 +24,10 @@ try{
 		<div id="wrapper">
 			<h1><?php echo $result['title'];?></h1>
 			<div>
-				<p class="nav right">
+				<p class="nav">
 					<a href="index.php">на главную</a>
 				</p>
+				
 				
 				<p class="date"><?php echo $date['datetime'];?></p>
 				<?php echo $result['text'];?>

@@ -14,7 +14,7 @@ try{
 	*/
 	$text_note =  '<p>'.str_replace(array('0'=>"\r\n",'1'=>"\n\n"),'</p><p>', trim($_POST['text'])).'</p>';
 	$data['anons'] = mb_split('</p>', $text_note)[0].'</p>';
-	$data['text'] = $text_note;
+	$data['text'] = htmlspecialchars($text_note);
 	$data['datetime'] = time();
 	$sth_insert -> execute($data);
 	header('Location: index.php', TRUE, 303);

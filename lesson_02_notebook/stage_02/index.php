@@ -1,3 +1,70 @@
+<?php
+require_once(__DIR__.'/config.php');
+
+
+
+try{
+	$dbh = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
+	$dbh -> setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+	$dbh -> setAttribute( PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+	/*
+	* Если передана команда на удаление поста
+	*/
+	if($_GET['del'] && $_GET['page']){
+		$id = (int)$_GET['del'];
+		$sql_delete = 'DELETE FROM posts WHERE id = :id';
+		$sth_delete = $dbh->prepare($sql_delete);
+		$option = $sth_delete->execute(array('id'=>$id));
+	} 
+	/*
+	* Формируем страницу выдачи
+	*/
+	$sql_total = "SELECT COUNT(*) FROM posts";
+	$sth_total = $dbh->prepare($sql_total);
+	$sth_total->execute();
+	$total_posts = $sth_total->fetch()['COUNT(*)'];
+	$post_to_page = 5;// количество записей на странице
+	$total_page = ceil($total_posts/$post_to_page); // количество страниц пагинации
+	/*
+	* Определяем текущую страницу
+	*/
+	if($_GET['page']){
+		$current_page = $_GET['page'];
+	}else{
+		$current_page = $total_page;
+	}
+	/*
+	* Определяем массив страниц пагинации
+	*/
+	if($current_page-2<=0 && $current_page+2>=$total_page){
+		$start_page = 1;
+		$end_page = $total_page;
+	}elseif($current_page-2>0 && $current_page+2>=$total_page){
+		$start_page = $current_page-2;
+		$end_page = $total_page;
+	}elseif($current_page-2>0 && $current_page+2<$total_page){
+		$start_page = $current_page-2;
+		$end_page = $current_page+2;
+	}else{
+		$start_page = 1;
+		$end_page = $current_page+2;
+	}
+	
+	for($i=$start_page; $i<$end_page+1; $i++){
+		$page_pagination[] = $i;
+	} 
+	
+	 /*
+	 * Извлекаем данные из базы данных для формирования текущей страницы
+	 */
+	$sql_select = "SELECT * FROM posts WHERE id BETWEEN :id_start AND :id_end";	
+	$sth_select= $dbh->prepare($sql_select);
+	$data['id_start'] = $current_page*$post_to_page-$post_to_page+1;
+	$data['id_end'] = $current_page*$post_to_page;
+	$sth_select->execute($data);
+	$results = $sth_select->fetchAll();
+	
+?>
 <!DOCTYPE html>
 <html lang="ru">
 	<head>
@@ -9,63 +76,43 @@
 	<body>
 		<div id="wrapper">
 			<h1>Список записей</h1>
-			<!--
-				При удалении следует сделать так,
-				чтобы мы попадали на ту же страницу пагинации.
-			-->
-			<!--
-			<div class="info alert alert-success">
-				Запись успешно удалена!
-			</div>
-			-->
-			<!--
-			<div class="info alert alert-danger">
-				Ошибка удаления записи!
-			</div>
-			-->
-			<div class="note">
+			<?php if(!empty($option) && $option ==TRUE){
+				echo "<div class='info alert alert-success'>Запись успешно удалена!</div>";
+			}elseif(!empty($option) && $option ==FALSE){
+				echo "<div class='info alert alert-danger'>Ошибка удаления записи!</div>";
+			}
+			foreach($results as $result){?>
+				<div class="note">
 				<p>
-					<span class="date">15.04.2014</span>
-					<a href="note.php?id=3">Моя заметка номер 5</a>
+					<span class="date"><?php echo date("d.m.Y", $result['datetime']);?></span>
+					<a href="note.php?id=<?php echo $result['id']; ?>"><?php echo $result['title']; ?></a>
 				</p>
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla efficitur elementum lorem id venenatis. Nullam id sagittis urna, eu ultrices risus. Duis ante lorem, semper nec fringilla eu, commodo vel mauris. Nunc tristique odio lectus, eget condimentum nunc consectetur eu. Nullam non varius nisl, aliquet fringilla lectus. Aliquam erat volutpat. Ut vel mi et lectus hendrerit ornare vel ut neque. Quisque venenatis nisl eu mi...
-				</p>
+				<?php echo $result['Anons']; ?>
 				<p class="nav">
-					<a href="index.php?page=1&del=3">удалить</a> |
-					<a href="edit.php?edit=3">редактировать</a>
-				</p>
-			</div>	
-			<div class="note">
-				<p>
-					<span class="date">13.04.2014</span>
-					<a href="note.php?id=2">Запись о предстоящих делах</a>
-				</p>
-				<p>
-					Ut varius commodo fringilla. Nullam id pulvinar odio. Pellentesque gravida aliquam ipsum, et malesuada neque molestie eget. Vestibulum sagittis finibus efficitur. Donec sit amet aliquet dolor, vitae ornare tortor. Etiam eget augue nec diam vehicula bibendum. Nulla quis erat lacus. Vestibulum quis mattis augue...
-				</p>
-				<p class="nav">
-					<a href="index.php?page=1&del=2">удалить</a> |
-					<a href="edit.php?edit=2">редактировать</a>
+					<a href="index.php?page=<?php echo $current_page; ?>&del=<?php echo $result['id']; ?>">удалить</a> |
+					<a href="edit.php?edit=<?php echo $result['id']; ?>">редактировать</a>
 				</p>
 			</div>
-			<div class="note">
-				<p>
-					<span class="date">12.04.2014</span>
-					<a href="note.php?id=1">Список моих дел на завтра</a>
-				</p>
-				<p>
-					Etiam nisl ipsum, accumsan nec lacinia quis, gravida et neque. Morbi enim sem, sagittis id varius mattis, consectetur a ligula. Suspendisse molestie vulputate erat eu dapibus. Integer mattis elit in ipsum facilisis maximus. Vivamus eu urna velit. Integer sed lorem est. Nunc malesuada erat sit amet leo mattis, vitae egestas lacus sagittis...
-				</p>
-				<p class="nav">
-					<a href="index.php?page=1&del=1">удалить</a> |
-					<a href="edit.php?edit=1">редактировать</a>
-				</p>
-			</div>
+			
+			<?php }?>
+			
 			<div>
 				<nav>
 				  <ul class="pagination">
-					<li class="disabled">
+				  <?php if($current_page != 1){ echo "<li><a href='?page=1'  aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>";}
+				  for($i=0;$i<count($page_pagination);$i++){
+				  	if($current_page == $page_pagination[$i]){
+						$disable = " class='active'";
+					}else{
+						$disable='';
+					}
+				  	echo "<li".$disable."><a href='?page=".$page_pagination[$i]."'>".$page_pagination[$i]."</a></li>";
+				  }
+				  if($current_page != $total_page){
+				  	echo "<li><a href='?page=".$total_page."' aria-label='Next'><span aria-hidden='true'>&raquo;</span></a></li>";
+				  }
+				  ?>
+					<!--<li class="disabled">
 					  <a href="?page=1"  aria-label="Previous">
 						<span aria-hidden="true">&laquo;</span>
 					  </a>
@@ -79,7 +126,7 @@
 					  <a href="?page=5" aria-label="Next">
 						<span aria-hidden="true">&raquo;</span>
 					  </a>
-					</li>
+					</li>-->
 				  </ul>
 				</nav>
 				
@@ -91,6 +138,16 @@
 
 	</body>
 </html>
+
+
+<?php	
+	
+} catch (PDOException $e) {
+	echo 'Хьюстон, у нас проблема!<br />';
+	echo $e -> getMessage();
+}
+?>
+
 
 
 			
