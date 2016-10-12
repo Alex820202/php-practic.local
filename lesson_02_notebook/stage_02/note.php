@@ -30,7 +30,7 @@ try{
 				
 				
 				<p class="date"><?php echo $date['datetime'];?></p>
-				<?php echo $result['text'];?>
+				<?php echo htmlspecialchars_decode($result['text']);?>
 			</div>
 			<div>
 				<a href="add.php" class="btn btn-danger btn-block">Добавить запись</a>
