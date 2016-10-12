@@ -12,7 +12,7 @@ try{
 	/*
 	*Форматируем с добавлением html-тегов абзаца текст, введенный в поле "Текст записи". 
 	*/
-	$text_note =  '<p>'.str_replace(array('0'=>"\r\n",'1'=>"\n\n"),'</p><p>', trim($_POST['text'])).'</p>';
+	$text_note =  '<p>'.str_replace(array(0 =>"\r\n",1 =>"\n\n"),'</p><p>', trim($_POST['text'])).'</p>';
 	$data['anons'] = mb_split('</p>', $text_note)[0].'</p>';
 	$data['text'] = htmlspecialchars($text_note);
 	$data['datetime'] = time();

@@ -57,10 +57,11 @@ try{
 	 /*
 	 * Извлекаем данные из базы данных для формирования текущей страницы
 	 */
-	$sql_select = "SELECT * FROM posts WHERE id BETWEEN :id_start AND :id_end";	
+	$sql_select = "SELECT * FROM posts LIMIT :id_start, :id_count";	
 	$sth_select= $dbh->prepare($sql_select);
-	$data['id_start'] = $current_page*$post_to_page-$post_to_page+1;
-	$data['id_end'] = $current_page*$post_to_page;
+	$start = $current_page*$post_to_page-$post_to_page;
+	$sth_select->bindValue(id_start, $start, PDO::PARAM_INT);
+	$sth_select->bindValue(id_count, $post_to_page, PDO::PARAM_INT);
 	$sth_select->execute($data);
 	$results = $sth_select->fetchAll();
 	
@@ -112,21 +113,7 @@ try{
 				  	echo "<li><a href='?page=".$total_page."' aria-label='Next'><span aria-hidden='true'>&raquo;</span></a></li>";
 				  }
 				  ?>
-					<!--<li class="disabled">
-					  <a href="?page=1"  aria-label="Previous">
-						<span aria-hidden="true">&laquo;</span>
-					  </a>
-					</li>
-					<li class="active"><a href="?page=1">1</a></li>
-					<li><a href="?page=2">2</a></li>
-					<li><a href="?page=3">3</a></li>
-					<li><a href="?page=4">4</a></li>
-					<li><a href="?page=5">5</a></li>
-					<li>
-					  <a href="?page=5" aria-label="Next">
-						<span aria-hidden="true">&raquo;</span>
-					  </a>
-					</li>-->
+					
 				  </ul>
 				</nav>
 				
