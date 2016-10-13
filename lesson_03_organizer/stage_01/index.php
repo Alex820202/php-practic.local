@@ -1,15 +1,15 @@
 <?php
 require_once(__DIR__.'/config.php');
 
-$week = array('1', '2', '3', '4', '5', '6', '7'); // массив дней недели для проверки передаваемого параметра $_GET['date'].
+$week = array(1, 2, 3, 4, 5, 6, 7); // массив дней недели для проверки передаваемого параметра $_GET['date'].
 /*
 * Определяем видимый в органайзере день недели
 */
-if(in_array($_GET['date'], $week, TRUE)){
+if(in_array($_GET['date'], $week)){
 	$visible_day = $_GET['date'];
 }else{
 	if(date('w')!=0){
-		$visible_day = date("w");
+		$visible_day = date('w');
 		}else{
 			$visible_day = 7;
 	}
@@ -18,7 +18,7 @@ if(in_array($_GET['date'], $week, TRUE)){
 * Определяем текущий день недели
 */
 if(date('w')!=0){
-	$current_day = date("w");
+	$current_day = date('w');
 }else{
 	$current_day = 7;
 }
