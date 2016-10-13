@@ -1,27 +1,26 @@
 <?php
 require_once(__DIR__.'/config.php');
 
-$week = array(1, 2, 3, 4, 5, 6, 7); // массив дней недели для проверки передаваемого параметра $_GET['date'].
+$week = array(1=>'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'); // массив дней недели для формирования пагинации.
+
+$visible_day = (int)$_GET['date'];
+$current_day = date('w');
+/*
+* Поправляем текущий день недели
+*/
+if($current_day==0){
+	$current_day = 7;
+}
 /*
 * Определяем видимый в органайзере день недели
 */
-if(in_array($_GET['date'], $week)){
+if($visible_day>=1 AND $visible_day<=7){
 	$visible_day = $_GET['date'];
 }else{
-	if(date('w')!=0){
-		$visible_day = date('w');
-		}else{
-			$visible_day = 7;
+		$visible_day = $current_day;
 	}
-}
-/*
-* Определяем текущий день недели
-*/
-if(date('w')!=0){
-	$current_day = date('w');
-}else{
-	$current_day = 7;
-}
+
+
 
 try{
 	$dbh = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
@@ -86,8 +85,8 @@ try{
 					}else{
 						$class='';
 					}
-					$days_week = array(1=>'Понедельник', 2=>'Вторник', 3 =>'Среда', 4=>'Четверг', 5=>'Пятница', 6=>'Суббота', 7=>'Воскресенье');
-				  	echo "<li ".$class."><a href='?date=".$i."'>".$days_week[$i]."</a></li>";
+					
+				  	echo "<li ".$class."><a href='?date=".$i."'>".$week[$i]."</a></li>";
 				  }
 				  ?>
 				  </ul>
