@@ -1,3 +1,6 @@
+<?php
+echo time();
+?>
 <!DOCTYPE html>
 <html lang="ru">
 	<head>
