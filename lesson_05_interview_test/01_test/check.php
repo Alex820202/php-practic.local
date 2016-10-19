@@ -15,13 +15,16 @@ try{
 		}
 		$sql_select.=$flag.' id='.(int)$id[$i];
 	}
-	$sql_select.=' LIMIT '.$limit; // получили сформированный sql-запрос к базе данных.
+	$sql_select.=' LIMIT '.$limit; // получили сформированный sql-запрос к базе данных. LIMIT ставлю для того, чтобы как только требуемое количество вопросов выбрано, запрос прервался.
 	$stm_select = $dbh -> prepare($sql_select);
 	$stm_select -> execute();
 	$answers = $stm_select -> fetchAll();
-	$messages = array();
-	$correct_answer = 0;
-	$uncorrect_answer = 0;
+	$messages = array(); // массив для вывода сообщений на старницу
+	$correct_answer = 0; // будем считать количество верных ответов
+	$uncorrect_answer = 0;// будем считать количество не верных ответов
+	/*
+	* В цикле проверяем правильный ответ или нет. Если правильный, то пишем в переменную $message массив (1, текст вопроса), если не правильный, то пишем массив (0, текст вопроса, данный ответ, правильный ответ из БД), т.к. при неправильном ответе надо будет показать выданный ответ и правильный ответ.
+	*/
 	foreach($answers as $answer){
 		if($answer['answer'] == strip_tags(trim($_POST[$answer['id']]))){
 			$correct_answer++;
