@@ -1,3 +1,18 @@
+<?php  
+require_once(__DIR__.'/config.php');
+try{
+	$dbh = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
+	$dbh -> setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+	$dbh -> setAttribute( PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+	$sql_select = "SELECT * FROM question WHERE themes=:themes ORDER BY RAND() LIMIT :count"; //делаем выборку count количества вопросов из базы данных по заданной теме themes
+	$stm_select = $dbh -> prepare($sql_select);
+	$themes = 'Знание html тегов'; // тема вопросов
+	$count = 3; // количество вопросов
+	$stm_select -> bindValue(themes, $themes, PDO::PARAM_STR);
+	$stm_select -> bindValue(count, $count, PDO::PARAM_INT);
+	$stm_select -> execute();
+	$results = $stm_select -> fetchAll();
+	?>
 <!DOCTYPE html>
 <html lang="ru">
 	<head>
@@ -10,37 +25,29 @@
 	<body>
 		
 		<div id="wrapper">
-			<h1>Тест "Знание html тегов"</h1>
+			<h1>Тест "<?php echo $themes; ?>"</h1>
 			<div class="info alert alert-info">
 				Теги следует записывать без уголков.
 			</div>
 			<form action="check.php" method="POST">
-				<div class="note">
-					<p><b>1.</b> В каком теге лежит абзац?</p>
-					
-					<p><input class="form-control" placeholder=""></p>
-							
-				</div>
-				<div class="note">
-					<p><b>2.</b> В каком теге лежит заголовок первого уровня?</p>
-					
-					<p><input class="form-control" placeholder=""></p>
-							
-				</div>
-				<div class="note">
-					<p><b>3.</b> В каком теге лежит весь сайт?</p>
-					
-					<p><input class="form-control" placeholder=""></p>
-							
-				</div>
-				
-				<p><input type="submit" class="btn btn-success btn-block" value="Проверить ответы"></p>
+			<?php foreach($results as $result){
+				echo "<div class='note'><p><b>1.</b>".$result['question']."</p><p><input class='form-control' name='".$result['id']."' placeholder=''></p></div>";
+			} 
+			?>
+			<p><input type="submit" class="btn btn-success btn-block" value="Проверить ответы"></p>
 					
 			</form>
 		</div>
 
 	</body>
 </html>
+				
+	
+	<?php
+} catch (PDOException $e) {
+	echo 'Поблема с подключение к базе данных: '. $e->getMessage();
+}
 
 
-			
+
+?>

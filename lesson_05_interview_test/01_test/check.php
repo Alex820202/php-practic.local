@@ -1,3 +1,39 @@
+<?php
+require_once(__DIR__.'/config.php');
+try{
+	$dbh = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
+	$dbh -> setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+	$dbh -> setAttribute( PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+	$id = array_keys($_POST);
+	$limit = count($id);
+	$sql_select = 'SELECT * FROM question WHERE ';
+	for($i=0; $i<$limit; $i++){
+		if($i==0){
+			$flag='';
+		}else{ 
+			$flag = ' OR';
+		}
+		$sql_select.=$flag.' id='.(int)$id[$i];
+	}
+	$sql_select.=' LIMIT '.$limit; // получили сформированный sql-запрос к базе данных.
+	$stm_select = $dbh -> prepare($sql_select);
+	$stm_select -> execute();
+	$answers = $stm_select -> fetchAll();
+	$messages = array();
+	$correct_answer = 0;
+	$uncorrect_answer = 0;
+	foreach($answers as $answer){
+		if($answer['answer'] == strip_tags(trim($_POST[$answer['id']]))){
+			$correct_answer++;
+			$messages[] = array(0=>1, $answer['question']);
+		}else{
+			$uncorrect_answer++;
+			$messages[] = array(0=>0, $answer['question'], strip_tags(trim($_POST[$answer['id']])), $answer['answer']);
+		}
+	}
+
+	
+	?>
 <!DOCTYPE html>
 <html lang="ru">
 	<head>
@@ -10,34 +46,22 @@
 	<body>
 		
 		<div id="wrapper">
-			<h1>Результат теста "Знание html тегов"</h1>
+			<h1>Результат теста "<?php echo $answers[0]['themes'];	?>"</h1>
 			<div class="info alert alert-info">
-				Правильных ответов: 2.
-				Неправильных ответов: 1.
-			</div>
-			<div class="note">
-				<p><b>1.</b> В каком теге лежит абзац?</p>
-				<p class="right">Верно!</p>
-						
-			</div>
-			<div class="note">
-				<p><b>2.</b> В каком теге лежит заголовок первого уровня?</p>
-				
-				<p class="wrong">
-					Неверно!
-					<b>Ваш ответ:</b> html.
-					<b>Правильный ответ:</b> h1.
-				</p>
-				
-			</div>
-			<div class="note">
-				<p><b>3.</b> В каком теге лежит весь сайт?</p>
-				
-				<p class="right">Верно!</p>
-						
+				Правильных ответов: <?php echo $correct_answer; ?>.
+				Неправильных ответов: <?php echo $uncorrect_answer; ?>.
 			</div>
 			
-
+			<?php $i=1;
+			foreach($messages as $message){
+				if($message[0] == 0){
+					echo "<div class='note'><p><b>".$i.".</b> ".$message[1]."</p><p class='wrong'>Неверно! <b>Ваш ответ:</b> ".$message[2].".<b> Правильный ответ:</b> ".$message[3].".</p></div>";
+				}elseif($message[0] == 1){
+					echo "<div class='note'><p><b>".$i.".</b> ".$message[1]."</p><p class='right'>Верно!</p></div>";
+				}
+				$i++;
+			}
+			?>
 			<div class="info alert alert-info">
 				<br>
 			</div>			
@@ -45,6 +69,12 @@
 
 	</body>
 </html>
+	
+	
+<?php	
+} catch (PDOException $e) {
+	echo 'Проблема с одключением к базе данных: '. $e->getMessage();
+} ?>
 
 
-			
+
