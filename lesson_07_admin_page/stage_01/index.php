@@ -1,8 +1,25 @@
+<?php
+require_once(__DIR__.'/function.php');
+try{
+	$dbh = db_connect();
+	if(!empty($_GET['search'])){
+		
+		$content = search_text($dbh, $_GET['search']);
+		
+	}else{
+		$content = contentPage($dbh, $_GET['page']);
+	}
+	
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="ru">
 	<head>
 		<meta charset="utf-8">  
-		<title>Главная страница</title>
+		<title><?php echo $content['title']; ?></title>
 		<link rel="stylesheet" href="bootstrap3/css/bootstrap.css">
 		<link rel="stylesheet" href="css/styles.css">
 	</head>
@@ -13,19 +30,18 @@
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				  <ul class="nav navbar-nav">
 					
+					<?php
 					
-					<li class="active"><a href="?page=index">Главная</a></li>
-					<li><a href="?page=about">О компании</a></li>
-					<li><a href="?page=info">Информация</a></li>
-					<li><a href="?page=price">Наши цены</a></li>
+					gitMenu($dbh, $_GET['page']);
 					
+					?>
 				  </ul>
 				  
 				  
 				  <div class="nav navbar-nav navbar-right">
-					<form class="navbar-form navbar-left" role="search">
+					<form class="navbar-form navbar-left" action="index.php" method="get" role="search">
 						<div class="form-group">
-						  <input type="text" class="form-control" placeholder="Поиск">
+						  <input type="text" class="form-control" name="search" placeholder="Поиск">
 						</div>
 						<button type="submit" class="btn btn-default">Найти!</button>
 					</form>
@@ -37,29 +53,17 @@
 		</div>
 		<div id="wrapper">
 			
-			<h1>Главная страница</h1>
-			<p>
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla efficitur elementum lorem id venenatis. Nullam id sagittis urna, eu ultrices risus. Duis ante lorem, semper nec fringilla eu, commodo vel mauris. Nunc tristique odio lectus, eget condimentum nunc consectetur eu. Nullam non varius nisl, aliquet fringilla lectus. Aliquam erat volutpat. Ut vel mi et lectus hendrerit ornare vel ut neque. Quisque venenatis nisl eu mi...
-			</p>
-			<p>
-				Ut varius commodo fringilla. Nullam id pulvinar odio. Pellentesque gravida aliquam ipsum, et malesuada neque molestie eget. Vestibulum sagittis finibus efficitur. Donec sit amet aliquet dolor, vitae ornare tortor. Etiam eget augue nec diam vehicula bibendum. Nulla quis erat lacus. Vestibulum quis mattis augue...
-			</p>
-			<p>
-				Etiam nisl ipsum, accumsan nec lacinia quis, gravida et neque. Morbi enim sem, sagittis id varius mattis, consectetur a ligula. Suspendisse molestie vulputate erat eu dapibus. Integer mattis elit in ipsum facilisis maximus. Vivamus eu urna velit. Integer sed lorem est. Nunc malesuada erat sit amet leo mattis, vitae egestas lacus sagittis...
-			</p>
-			<p>
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla efficitur elementum lorem id venenatis. Nullam id sagittis urna, eu ultrices risus. Duis ante lorem, semper nec fringilla eu, commodo vel mauris. Nunc tristique odio lectus, eget condimentum nunc consectetur eu. Nullam non varius nisl, aliquet fringilla lectus. Aliquam erat volutpat. Ut vel mi et lectus hendrerit ornare vel ut neque. Quisque venenatis nisl eu mi...
-			</p>
-			<p>
-				Ut varius commodo fringilla. Nullam id pulvinar odio. Pellentesque gravida aliquam ipsum, et malesuada neque molestie eget. Vestibulum sagittis finibus efficitur. Donec sit amet aliquet dolor, vitae ornare tortor. Etiam eget augue nec diam vehicula bibendum. Nulla quis erat lacus. Vestibulum quis mattis augue...
-			</p>
-			<p>
-				Etiam nisl ipsum, accumsan nec lacinia quis, gravida et neque. Morbi enim sem, sagittis id varius mattis, consectetur a ligula. Suspendisse molestie vulputate erat eu dapibus. Integer mattis elit in ipsum facilisis maximus. Vivamus eu urna velit. Integer sed lorem est. Nunc malesuada erat sit amet leo mattis, vitae egestas lacus sagittis...
-			</p>
+			<h1><?php echo $content['h1'] ?></h1>
+				<?php echo $content['text']; ?>
 		</div>
 
 	</body>
 </html>
 
+<?php
+} catch (PDOException $e) {
+	echo 'Нет связи с базой данных: '. $e -> getMessage();
+}
 
+?>
 			

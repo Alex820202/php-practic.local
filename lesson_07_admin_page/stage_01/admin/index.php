@@ -1,3 +1,17 @@
+<?php
+require_once('../function.php');
+try{
+	$dbh = db_connect();
+	session_start();
+	if(!empty($_SESSION['true'])){
+		
+	}
+	var_dump($_SESSION);
+	
+	
+
+?>
+
 <!DOCTYPE html>
 <html lang="ru">
 	<head>
@@ -52,6 +66,14 @@
 
 	</body>
 </html>
+
+<?php
+} catch (PDOException $e) {
+	echo 'Нет связи с базой данных: '. $e -> getMessage();
+}
+
+?>
+		
 
 
 			
