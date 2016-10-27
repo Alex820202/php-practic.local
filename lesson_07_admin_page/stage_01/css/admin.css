@@ -8,8 +8,17 @@
 }
 
 .nav{
-	text-align: right;
+	width: 340px;
+	display: inline-block;
+	text-align: left;
 	padding-right: 10px;
+	font-size: 10pt;
+}
+.nav-left{
+	width: 340px;
+	display: inline-block;
+	text-align: right;
+	padding-left: 10px;
 	font-size: 10pt;
 }
 

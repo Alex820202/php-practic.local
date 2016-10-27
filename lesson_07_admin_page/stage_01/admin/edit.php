@@ -1,3 +1,24 @@
+<?php
+session_start();
+require_once('../function.php');
+try{
+	if(autorizationStatus()==3 OR autorizationStatus()==0){
+	session_unset();
+	header('Location: index.php', TRUE, 303);
+}elseif(autorizationStatus()==2){
+		echo "<div class='info alert alert-danger'>Извините, <u>".$_SESSION['author']."</u>, у Вас не достаточно прав для просмотра страницы!</div>";
+		echo "<div class='nav'><a href='../index.php'>На главную</a></div>";
+		echo "<div class='nav-left'><a href='index.php?auth=2'>Выход</a></div>";
+	}elseif(autorizationStatus()==1){ 
+		$dbh = db_connect();
+		$option = 'save';
+		if(!empty($_POST) && $_GET['option']==$option){
+			$parametr = saveContentPage($dbh);
+			header("Location: edit.php?page=".$parametr[1]."&flag=".$parametr[0], TRUE, 303);
+		}
+		$content = contentPage($dbh, $_GET['page']);
+		
+	?>
 <!DOCTYPE html>
 <html lang="ru">
 	<head>
@@ -13,23 +34,74 @@
 			<p class="nav">
 				<a href="index.php">на главную</a>
 			</p>
+			<?php
+			if($_GET['flag']==1){
+				echo "<div class='info alert alert-success'>Запись успешно сохранена!</div>";
+			}elseif($_GET['flag']==2){
+				echo "<div class='info alert alert-danger'>Ошибка сохранения записи!</div>";
+			} 
+			?>
+			<div>
+				<form action="edit.php?option=save" method="POST">
+					<p><input class="hidden" value="<?php echo $content['url']; ?>" name="hidden" required></p>
+					<p><input class="form-control" value="<?php echo $content['url']; ?>" name="url" placeholder="Url страницы" required></p>
+					<p><input class="form-control" value="<?php echo $content['title']; ?>" name="title" placeholder="Тайтл страницы" required></p>
+					<p><input class="form-control" value="<?php echo $content['h1']; ?>" name="h1" placeholder="Название страницы" required></p>
+					<p>
+						<textarea class="form-control" name="text">
+						<?php echo $content['text']; ?>
+						</textarea>
+					</p>
+					<p><input type="submit" class="btn btn-danger btn-block" value="Сохранить"></p>
+				</form>
+			</div>
+			
+		</div>
+
+	</body>
+</html>
+	
+	<?php	
+	}
+} catch (PDOException $e) {
+	echo 'Нет связи с базой данных : <br/>'. $e->getMessage();
+}
+
+
+?>
+
+<!--<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8">  
+		<title>Редактировать страницу</title>
+		<link rel="stylesheet" href="../bootstrap3/css/bootstrap.css">
+		<link rel="stylesheet" href="../css/styles.css">
+		<link rel="stylesheet" href="../css/admin.css">
+	</head>
+	<body>
+		<div id="wrapper">
+			<h1>Редактировать страницу</h1>
+			<p class="nav">
+				<a href="index.php">на главную</a>
+			</p>-->
 			<!-- 
 			
 				После сохранения выдает сообщение
 				об успехе.
 			
 			-->
-			
+			<!--
 			<div class="info alert alert-success">
 				Запись успешно сохранена!
-			</div>
+			</div>-->
 			
 			<!--
 			<div class="info alert alert-danger">
 				Ошибка сохранения записи!
 			</div>
 			-->
-			<div>
+			<!--<div>
 				<form action="" method="POST">
 					<p><input class="form-control" value="index" placeholder="Url страницы"></p>
 					<p><input class="form-control" value="Главная" placeholder="Название страницы"></p>
@@ -55,5 +127,5 @@
 	</body>
 </html>
 
-
+-->
 			
