@@ -12,9 +12,9 @@ function db_connect(){
 /*
 * Формируем содержимое запрошенной страницы
 */
-function contentPage($dbh, $get_page){
-	if(!empty($get_page)){
-		$url = strip_tags(trim($get_page));
+function contentPage($dbh){
+	if(!empty($_GET['page'])){
+		$url = strip_tags(trim($_GET['page']));
 	}else{
 		$url = 'index';
 	}
@@ -95,8 +95,8 @@ function saveContentPage($dbh){
 /*
 * Выводим на экран меню.
 */
-function gitMenu($dbh, $get_page){
-	$get_page = strip_tags(trim($get_page));
+function gitMenu($dbh){
+	$get_page = strip_tags(trim($_GET['page']));
 	
 	$sql_menu = 'SELECT url, title FROM pages';
 	$sth_menu = $dbh -> prepare($sql_menu);
@@ -130,11 +130,11 @@ function gitMenu($dbh, $get_page){
 /*
 * Функция поиска. На входе подключение к БД, искомое выражение. На выходе массив содержимого страницы h1 и text.
 */
-function search_text($dbh, $search){
+function search_text($dbh){
 	$tags = array(0=>'title', 'h1', 'text');
 		for($i=0;$i<count($tags);$i++){
 			$url = $tags[$i];
-			$search = strip_tags(trim($search));
+			$search = strip_tags(trim($_GET['search']));
 			$sql_search = "SELECT * FROM pages WHERE ".$url." LIKE '%".$search."%' LIMIT 1";
 			$sth_search = $dbh -> prepare($sql_search);
 			$sth_search -> execute();
@@ -154,7 +154,7 @@ function search_text($dbh, $search){
 /*
 * Функция авторизации для входа в административную часть, если пользователь не был авторизован, до этого
 */
-function autorization($dbh, $post_array){
+function autorization($dbh){
 	if(!empty($_POST)){
 		$login = strip_tags(trim($_POST['login']));
 		$password = strip_tags(trim($_POST['password']));

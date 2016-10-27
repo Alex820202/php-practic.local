@@ -4,10 +4,10 @@ try{
 	$dbh = db_connect();
 	if(!empty($_GET['search'])){
 		
-		$content = search_text($dbh, $_GET['search']);
+		$content = search_text($dbh);
 		
 	}else{
-		$content = contentPage($dbh, $_GET['page']);
+		$content = contentPage($dbh);
 	}
 	
 
@@ -32,7 +32,7 @@ try{
 					
 					<?php
 					
-					gitMenu($dbh, $_GET['page']);
+					gitMenu($dbh);
 					
 					?>
 				  </ul>
@@ -54,7 +54,7 @@ try{
 		<div id="wrapper">
 			
 			<h1><?php echo $content['h1'] ?></h1>
-				<?php echo $content['text']; ?>
+				<?php echo '<p>'.str_replace(array(0=>"\r", "\n"), '</p>', $content['text']); ?>
 		</div>
 
 	</body>
